@@ -36,8 +36,8 @@ class KalmanFilter:
     K = np.dot(np.dot(self.P, self.H.T), np.linalg.inv(S))
     self.x = self.x + np.dot(K, y)
 
-# Example usage:
-# Assume we want to track the position and velocity of a moving object with a state vector of [position, velocity] and a single scalar measurement of position
+Example usage:
+Assume we want to track the position and velocity of a moving object with a state vector of [position, velocity] and a single scalar measurement of position
 dt = 0.1 # time step
 F = np.array([[1, dt], [0, 1]]) # state transition model
 H = np.array([[1, 0]]) # observation model
@@ -55,18 +55,20 @@ for i in range(100):
   true_states.append([i*dt, 1]) # assume constant velocity of 1m/s
   measurements.append(i*dt + np.random.normal(scale=1)) # add measurement noise
 
-# Run the Kalman filter on the simulated measurements
+ Run the Kalman filter on the simulated measurements
 est_states = []
 for z in measurements:
     kf.predict()
     kf.update(np.array([z]))
     est_states.append(kf.x)
 
-# Plot the true and estimated positions
+ Plot the true and estimated positions
 plt.plot([s[0] for s in true_states], label='true')
 plt.plot([s[0] for s in est_states], label='estimate')
 plt.legend()
 plt.show()
+
+
 ```
 
 ## Output:
